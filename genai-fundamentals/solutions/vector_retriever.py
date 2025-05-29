@@ -3,20 +3,29 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from neo4j import GraphDatabase
-uri = os.getenv("NEO4J_URI")
-username = os.getenv("NEO4J_USERNAME")
-password = os.getenv("NEO4J_PASSWORD")
-driver = GraphDatabase.driver(uri, auth=(username, password))
+# tag::import-embedder
+from neo4j_graphrag.embeddings.openai import OpenAIEmbeddings
+# end::import-embedder
+# tag::import-retriever
+from neo4j_graphrag.retrievers import VectorRetriever
+# end::import-retriever
+
+# Connect to Neo4j database
+driver = GraphDatabase.driver(
+    os.getenv("NEO4J_URI"), 
+    auth=(
+        os.getenv("NEO4J_USERNAME"), 
+        os.getenv("NEO4J_PASSWORD")
+    )
+)
 
 # tag::embedder[]
-from neo4j_graphrag.embeddings.openai import OpenAIEmbeddings
-
+# Create embedder
 embedder = OpenAIEmbeddings(model="text-embedding-ada-002")
 # end::embedder[]
 
 # tag::retriever[]
-from neo4j_graphrag.retrievers import VectorRetriever
-
+# Create retriever
 retriever = VectorRetriever(
     driver,
     index_name="moviePlots",
@@ -26,10 +35,15 @@ retriever = VectorRetriever(
 # end::retriever[]
 
 # tag::search[]
+# Search for similar items
 result = retriever.search(query_text="Toys come alive", top_k=5)
-
-for item in result.items:
-    print(item.content, item.metadata["score"])
 # end::search[]
 
+# tag::print-results[]
+# Parse results
+for item in result.items:
+    print(item.content, item.metadata["score"])
+# end::print-results[]
+
+# CLose the database connection
 driver.close()
