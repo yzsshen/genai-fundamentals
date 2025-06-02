@@ -4,11 +4,9 @@ load_dotenv()
 
 from neo4j import GraphDatabase
 from neo4j_graphrag.embeddings.openai import OpenAIEmbeddings
-# tag::import-retriever[]
 from neo4j_graphrag.retrievers import VectorCypherRetriever
 from neo4j_graphrag.llm import OpenAILLM
 from neo4j_graphrag.generation import GraphRAG
-# end::import-retriever[]
 
 # Connect to Neo4j database
 driver = GraphDatabase.driver(
@@ -52,9 +50,7 @@ llm = OpenAILLM(model_name="gpt-4o")
 rag = GraphRAG(retriever=retriever, llm=llm)
 
 # Search
-query_text = "Find an action movie about travelling to other planets"
-query_text = "Who acts in drama movies about romance and love?"
-query_text = "Find the highest rated comedy movie about vampires"
+query_text = "Find the highest rated action movie about travelling to other planets"
 
 response = rag.search(
     query_text=query_text, 
