@@ -4,7 +4,9 @@ load_dotenv()
 
 from neo4j import GraphDatabase
 from neo4j_graphrag.embeddings.openai import OpenAIEmbeddings
+# tag::import-retriever[]
 from neo4j_graphrag.retrievers import VectorCypherRetriever
+# tag::import-retriever[]
 from neo4j_graphrag.llm import OpenAILLM
 from neo4j_graphrag.generation import GraphRAG
 
