@@ -32,15 +32,17 @@ retriever = VectorRetriever(
     return_properties=["title", "plot"],
 )
 
-
 # tag::llm[]
 # Create the LLM
 llm = OpenAILLM(model_name="gpt-4o")
 # end::llm[]
 
 # tag::llm-temp[]
-# You can modify the LLM configuration if needed
-# llm = OpenAILLM(model_name="gpt-3.5-turbo", model_params={"temperature": 1})
+# Modify the LLM configuration if needed
+llm = OpenAILLM(
+    model_name="gpt-3.5-turbo", 
+    model_params={"temperature": 1}
+)
 # end::llm-temp[]
 
 # tag::graphrag[]
