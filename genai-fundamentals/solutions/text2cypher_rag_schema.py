@@ -21,7 +21,6 @@ t2c_llm = OpenAILLM(
     model_name="gpt-4o", 
     model_params={"temperature": 0}
 )
-# end::t2c_llm[]
 
 # tag::schema[]
 # Specify your own Neo4j schema

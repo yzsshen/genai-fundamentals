@@ -3,12 +3,12 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from neo4j import GraphDatabase
-# tag::import-embedder
+# tag::import-embedder[]
 from neo4j_graphrag.embeddings.openai import OpenAIEmbeddings
-# end::import-embedder
-# tag::import-retriever
+# end::import-embedder[]
+# tag::import-retriever[]
 from neo4j_graphrag.retrievers import VectorRetriever
-# end::import-retriever
+# end::import-retriever[]
 
 # Connect to Neo4j database
 driver = GraphDatabase.driver(

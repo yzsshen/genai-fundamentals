@@ -5,12 +5,12 @@ load_dotenv()
 from neo4j import GraphDatabase
 from neo4j_graphrag.embeddings.openai import OpenAIEmbeddings
 from neo4j_graphrag.retrievers import VectorRetriever
-# tag::import-llm
+# tag::import-llm[]
 from neo4j_graphrag.llm import OpenAILLM
-# end::import-llm
-# tag::import-graphrag
+# end::import-llm[]
+# tag::import-graphrag[]
 from neo4j_graphrag.generation import GraphRAG
-# end::import-graphrag
+# end::import-graphrag[]
 
 # Connect to Neo4j database
 driver = GraphDatabase.driver(
@@ -33,19 +33,19 @@ retriever = VectorRetriever(
 )
 
 
-# tag::llm
-#  Create the LLM
+# tag::llm[]
+# Create the LLM
 llm = OpenAILLM(model_name="gpt-4o")
 # Modify the LLM configuration if needed
 # llm = OpenAILLM(model_name="gpt-3.5-turbo", model_params={"temperature": 1})
-# end::llm
+# end::llm[]
 
 # tag::graphrag[]
 # Create GraphRAG pipeline
 rag = GraphRAG(retriever=retriever, llm=llm)
 # end::graphrag[]
 
-# tag::search
+# tag::search[]
 # Search
 query_text = "Find me 3 films about toys coming alive"
 
@@ -55,9 +55,9 @@ response = rag.search(
 )
 
 print(response.answer)
-# end::search
+# end::search[]
 
-# tag::search_return_context
+# tag::search_return_context[]
 # Search
 query_text = "Find me 3 movies about toys coming alive"
 
@@ -69,7 +69,7 @@ response = rag.search(
 
 print(response.answer)
 print("CONTEXT:", response.retriever_result.items)
-# end::search_return_context
+# end::search_return_context[]
 
 # Close the database connection
 driver.close()
