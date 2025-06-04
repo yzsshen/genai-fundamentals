@@ -52,7 +52,7 @@ rag = GraphRAG(retriever=retriever, llm=llm)
 
 # tag::search[]
 # Search
-query_text = "Find me 3 films about toys coming alive"
+query_text = "Find me movies about toys coming alive"
 
 response = rag.search(
     query_text=query_text, 
@@ -64,7 +64,7 @@ print(response.answer)
 
 # tag::search_return_context[]
 # Search
-query_text = "Find me 3 movies about toys coming alive"
+query_text = "Find me movies about toys coming alive"
 
 response = rag.search(
     query_text=query_text, 
