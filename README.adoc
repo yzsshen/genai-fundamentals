@@ -6,7 +6,7 @@ For a complete walkthrough of this repository, link:https://graphacademy.neo4j.c
 
 link:https://codespaces.new/neo4j-graphacademy/genai-fundamentals[image:https://github.com/codespaces/badge.svg[Open in GitHub Codespaces]^]
 
-Went through this during ODSC Agentic AI Summit with Martin O'Hanlon, Technical Curriculum Developer at Neo4j. His notes link:yhttps://docs.google.com/document/d/1RlLh3HXVi76Gf90lMoAkIOiaDr6YSRtfsl2y5ypQrYY/edit?tab=t.0#heading=h.kcd31wym5ay[here^].
+Went through this during ODSC Agentic AI Summit 2025 on 2025/07/17 with Martin O'Hanlon, Technical Curriculum Developer at Neo4j. His notes link:https://docs.google.com/document/d/1RlLh3HXVi76Gf90lMoAkIOiaDr6YSRtfsl2y5ypQrYY/[here^].
 
 == Tests
 
