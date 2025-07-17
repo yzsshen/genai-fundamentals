@@ -5,6 +5,8 @@ load_dotenv()
 from neo4j import GraphDatabase
 from neo4j_graphrag.embeddings.openai import OpenAIEmbeddings
 from neo4j_graphrag.retrievers import VectorRetriever
+from neo4j_graphrag.llm import OpenAILLM
+from neo4j_graphrag.generation import GraphRAG
 
 # Connect to Neo4j database
 driver = GraphDatabase.driver(
@@ -27,10 +29,28 @@ retriever = VectorRetriever(
 )
 
 # Create the LLM
+llm = OpenAILLM(model_name="gpt-4o")
+
+# # Modify the LLM configuration if needed
+# llm = OpenAILLM(
+#     model_name="gpt-3.5-turbo", 
+#     model_params={"temperature": 1}
+# )
 
 # Create GraphRAG pipeline
+rag = GraphRAG(retriever=retriever, llm=llm)
 
 # Search 
+query_text = "Find me movies about toys coming alive"
 
-# CLose the database connection
+response = rag.search(
+    query_text=query_text,
+    retriever_config={"top_k": 5},
+    return_context=True,
+)
+
+print(response.answer)
+
+# Close the database connection
 driver.close()
+print("CONTEXT:", response.retriever_result.items)
